@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Xml.Linq;
 
 
 
@@ -47,3 +49,56 @@ Console.WriteLine(output);
 //łączenie stringów wykorzystując interpolację (string interpolowany)
 output = $"{helloVariable} {target}!";
 Console.WriteLine(output);
+
+format = "Długość dotychczasowej zawartości zmiennej \"output\" to {0}";
+
+output = string.Format(format, output.Length);
+Console.WriteLine(output);
+
+output = string.Format(format, output.Count());
+Console.WriteLine(output);
+
+//stringów nie możemy edytować, żeby zmienić wartość należy wytworzyć nowego stringa i przypisać pod zmienną
+output = output.Replace("56", "57");
+Console.WriteLine(output);
+
+//zastąpienie części znaków - czułe na wielkość liter
+output = output.Replace("dotychczasowej", "tymczasowej");
+Console.WriteLine(output);
+
+output = output.Replace("TyMczaSowej", "dotychczasowej", StringComparison.OrdinalIgnoreCase);
+Console.WriteLine(output);
+
+//wycinanie "podstringów"
+output = output.Substring(output.Length - 14);
+Console.WriteLine(output);
+
+
+output = output.Substring(output.Length - 14, 8);
+Console.WriteLine(output);
+
+
+string someString = "ala ma kota";
+string anotherString = "Ala ma kota";
+
+bool isEqual;
+
+//= operator przypisania
+// == - operator porównania, dla string działa tak samo jak Equals
+isEqual = someString == anotherString;
+Console.WriteLine(isEqual);
+
+isEqual = someString.Equals(anotherString, StringComparison.OrdinalIgnoreCase);
+Console.WriteLine(isEqual);
+
+string name = Console.ReadLine();
+
+//usuwanie białych znaków z początku i/lub końca
+Console.WriteLine($"{name}");
+Console.WriteLine($"*{name}*");
+Console.WriteLine($"*{name.Trim()}*");
+Console.WriteLine($"*{name.TrimEnd()}*");
+Console.WriteLine($"*{name.TrimStart()}*");
+
+//usuwanie wskazanego znaku przez sparametryzowanie metody wskazanym znakiem
+Console.WriteLine($"*{name.Trim().Trim('ł')}*");
