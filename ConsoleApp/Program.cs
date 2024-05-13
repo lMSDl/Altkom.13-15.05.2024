@@ -83,3 +83,17 @@ Console.WriteLine($"{floatC:00#.0##}");
 //możemy też zastosować predefiniowane formaty: f2 oznacza zachowanie 2 miejsce po przecinku
 Console.WriteLine($"{1f / 3f:f2}");
 
+
+Console.WriteLine("Podaj pierwszy bok kwadratu:");
+string input1 = Console.ReadLine();
+Console.WriteLine("Podaj drugi bok kwadratu");
+string input2 = Console.ReadLine();
+
+/*int sideA = int.Parse(input1);
+int sideB = int.Parse(input2);*/
+
+float sideA = float.Parse(input1);
+float sideB = float.Parse(input2);
+
+float area = sideA * sideB;
+Console.WriteLine($"Pole to {area}");
