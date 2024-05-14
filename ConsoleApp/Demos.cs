@@ -456,5 +456,90 @@ namespace ConsoleApp
                 }
             }
         }
+
+        public void Switch()
+        {
+
+            Console.WriteLine("Podaj bok kwadratu:");
+            string input = Console.ReadLine();
+            int side;
+            bool parseSuccess = int.TryParse(input, out side);
+
+            if (!parseSuccess)
+            {
+                Console.WriteLine("Błędna wartość");
+            }
+            else
+            {
+                //switch - przyjmuje parametr, kóry jest porównywany z listą przypadków (case)
+                switch (side)
+                {
+                    //case - rozpatrywany przypadek
+                    //wiele case'ow może być przypisanych do tego samego kodu
+                    case > 0:
+                        //kod wykonywany jest od case do break - nie ma potrzeby stosowaniea klamerek {}
+                        //case musi kończyć się instrukją break - przerywająca wykonywanie swticha
+                        Console.WriteLine($"Kwadrat ma obwód: {side * 4}");
+                        break;
+                    case < 0:
+                        Console.WriteLine("Nie mogę policzyć obwodu z ujemnego rozmiaru");
+                        break;
+                    //default - odpowiedniek else, czyli wykonanie kodu, jeśli nie znalezioni odpowiedniego case
+                    default:
+                        Console.WriteLine("Kwadrat nie istnieje");
+                        break;
+                }
+            }
+        }
+
+        public void Calculator()
+        {
+                        Console.WriteLine("podaj wartość A:");
+            string a = Console.ReadLine();
+            float valueA;
+
+            if (!float.TryParse(a, out valueA))
+            {
+                Console.WriteLine("Błędna wartość A!");
+                return; //przerywa wykonywanie funkcji
+            }
+
+            Console.WriteLine("podaj wartość B:");
+            string b = Console.ReadLine();
+            float valueB;
+            if (!float.TryParse(b, out valueB))
+            {
+                Console.WriteLine("Błędna wartość B!");
+                return;
+            }
+
+            Console.WriteLine("Wprowadź znak operacji:");
+            string operation = Console.ReadLine();
+
+            float result;
+
+            switch (operation)
+            {
+                case "+":
+                    result = valueA + valueB;
+                    break;
+                case "-":
+                    result = valueA - valueB;
+                    break;
+                case "*":
+                    result = valueA * valueB;
+                    break;
+                case "/":
+                    result = valueA / valueB;
+                    break;
+                case "^":
+                    result = (float)Math.Pow(valueA, valueB);
+                    break;
+                default:
+                    Console.WriteLine("Nieznana operacja!");
+                    return;
+            }
+            Console.WriteLine($"{a} {operation} {b} = {result}");
+        }
     }
 }
