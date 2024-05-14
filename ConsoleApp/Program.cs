@@ -15,57 +15,58 @@ using System.Linq;
 //demo.Switch();
 //demo.While();
 //demo.DoWhile();
-
-
-//I - inicjalizacja pętli - wykonuje się tylko raz na początku
-//II - warunek kontynuacji pętli - wykonuje się przed każdym wykonaniem ciała
-//III - ciało pętli
-//IV - akcja po wykonaniu ciała - najczęsciej inkrementacja licznika
-
-//for(I; II; IV)
-//{
-//  III
-//}
-
-for (int i = 0; i < 5; i++ /*i += 1*/)
-{
-    Console.WriteLine(i);
-}
-Console.WriteLine("---");
-
-
-//pętla nieskończona - odpowiednik while(true)
-/*for (; ; )
-{
-    Console.WriteLine("*");
-}*/
-
-
-int value = 5;
-for (; value > 0; value -= 2)
-{
-    Console.WriteLine(value);
-}
-Console.WriteLine("---");
-
-value = 0;
-for (; value < 5;)
-{
-    Console.WriteLine(value++); //wartość wzrasta po wyświetleniu
-}
-Console.WriteLine("---");
-
-value = 0;
-for (; value < 5;)
-{
-    Console.WriteLine(++value); //wartość wzrasta przed wyświetleniem
-}
-Console.WriteLine("---");
+//demo.For();
 
 string input = Console.ReadLine();
 string[] splittedString = input.Split();
 
-for(int i = splittedString.Length - 1; i >= 0; i--)
+//foreach zastępuje poniższy sposób iteracji po tablicy przy założeniu, że iterujemy od początku do końca tablicy
+for (int i = 0; i < splittedString.Length; i++)
 {
-    Console.WriteLine(splittedString[i]);
+    string word = splittedString[i];
+
+    Console.WriteLine(word);
+}
+
+//foreach - pozwala przejsc po wszystkich elementach tablicy
+foreach (string word in splittedString)
+{
+    Console.WriteLine(word);
+}
+
+
+input = Console.ReadLine();
+splittedString = input.Split();
+
+int[] intValues = new int[splittedString.Length];
+for(int i = 0; i < splittedString.Length; i++)
+{
+    intValues[i] = int.Parse(splittedString[i]);
+}
+
+int counter = 0;
+foreach (int value in intValues)
+{
+    if (value % 2 == 0)
+        counter++;
+}
+Console.WriteLine($"Wprowadziłeś {counter} liczb parzystych");
+
+
+List<int> intList = new List<int>();
+foreach (string s in splittedString)
+{
+    intList.Add(int.Parse(s));
+}
+
+foreach(int value in intList)
+{
+    if(value % 2 == 0)
+        continue; //przerywa aktualne wykonywanie ciałą i przechodzi do kolejnej iteracji
+
+    if(value == 23)
+    {
+        Console.WriteLine("Znalazłem wartość 23!");
+        break; //przerywa wykonywanie pętli
+    }
 }
