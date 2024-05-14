@@ -9,58 +9,63 @@ using System.Linq;
 //demo.ShowTime(11940);
 //demo.Arrays();
 //demo.Lists();
-
+//demo.TryCatch();
 
 
 Console.WriteLine("Podaj bok kwadratu:");
 string input = Console.ReadLine();
 
-//blok try-catch służy do obsługi wyjątków
-try //w try wpisujemy kod, w którym może wystąpić błąd (wyjątek)
+int side = int.Parse(input);
+
+//if sprawdza warunek w nawiasie i jeśli jest on prawdziwy (true), to wykonuje się blok kodu pod nim
+if (side > 0)
 {
-    int side = int.Parse(input);
-    Console.WriteLine($"Pole: {side*side}; Obwód: {4*side}");
+    Console.WriteLine($"Kwadrat ma obwód: {side*4}");
 }
-catch //w catch wpisujemy co ma się stać jeśli wystąpi wyjątek. catch bez "parametru" przechwytuje dowolnego rodzaju wyjątki
+// jeśli poprzedni warunek nie jest spełniony, to sprawdzany jest kolejny if
+// else if - może występować wielokrotne
+else if (side < 0)
 {
-    Console.WriteLine("Coś poszło nie tak...");
+    Console.WriteLine("Nie mogę policzyć obwodu z ujemnego rozmiaru");
+}
+//else - wykonuje blok kodu w każdym innym przypadku
+else
+{
+    Console.WriteLine("Kwadrat nie istnieje");
 }
 
-Console.WriteLine("Podaj promień koła:");
-input = Console.ReadLine();
-try
+
+//jeżeli używany else jako łącznik ifów, to tylko jeden blok kodu zostanie wykonany i sprzwdzanie warunków zakończy się w przypadku wejścia w któryś z bloków
+//jeżeli nie używany else, to każdy if będzie traktowany osobno i warunek będzie sprzwdzany niezależnie
+//wniosek else jest też łącznikiem między kolejnymi if'ami
+
+if (side != 0)
 {
-    int r = int.Parse(input);
-    Console.WriteLine($"Pole: {Math.PI * r * r}; Obwód: {2 * Math.PI * r}");
+    Console.WriteLine("Bok jest różny od 0");
 }
-catch(Exception e) //jeśli chcemy znać powód błędu, możemy zajrzeć do obiektu wyjątku deklarując typ i nazwę zmiennej wyjątku jako "parametr" catch
+if (side == 0)
 {
-    Console.WriteLine(e.Message);
+    Console.WriteLine("Bok jest równy 0");
 }
 
-Console.WriteLine("Podaj wartość parzystą:");
-input = Console.ReadLine();
-try
-{
-    int value = int.Parse(input);
 
-    if (value % 2 != 0) //jeśli reszta z dzielenia przez 2 jest różna od 0 (czyli value nie jest podzielne przez 2)
-    {  
-        throw new ArgumentException("Wartość nie jest przysta");
-    }
-    //throw new Exception();
+bool result = side == 0; //== - porównanie
+     result = side != 0; //!= - nierówność
+     result = side > 0; //> - większe
+     result = side < 0;//< - mniejsze
+     result = side >= 0;//>= - większe bądź równe
+     result = side <= 0;//<= - mniejsze bądź równe
 
-    Console.WriteLine($"Super!");
-}
-catch (ArgumentException e) //możemy definiować różne zachowania w zależności os typu wyjątku
+     result = side > 0 || side < 0; // || - logiczne lub (OR)
+     result = side > 0 && side < 10; // && - logiczne i (AND)
+
+if(side > 0 && side <= 10)
 {
-    Console.WriteLine(e.Message);
+    Console.WriteLine("Bok kwadratu jest z przedziału (0;10>");
 }
-catch (FormatException) 
+
+//! - negacja - zaprzeczenie tego co występuje po wykrzykniku
+if (!(side >= 5 && side < 8))
 {
-    Console.WriteLine("Nie można przekonwertować podanej wartości na int");
-}
-catch(Exception e) //definiujemy je od szczegółowego do ogólnego
-{
-    Console.WriteLine($"Coś poszło nie tak: {e.Message}");
+    Console.WriteLine("Bok kwadratu jest spoza przedziału <5;8)");
 }
