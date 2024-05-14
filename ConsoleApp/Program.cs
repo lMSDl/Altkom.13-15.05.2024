@@ -52,3 +52,15 @@ intArray[0] = int.Parse(stringArray[0]);
 intArray[1] = int.Parse(stringArray[1]);
 
 Console.WriteLine($"Pole to: {intArray[0] * intArray[1]}");
+
+
+Console.WriteLine("Napisz coś:");
+string input = Console.ReadLine();
+
+//tablica zwracana jako rezultat wywołania metody
+//metoda split dzieli string na części wg wskazanego separatora
+//bez wskazania separatora dzieli po spacji
+string[] words = input.Split();
+
+
+Console.WriteLine($"Wpisałeś {words.Length} słów");
