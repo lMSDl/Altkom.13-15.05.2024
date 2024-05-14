@@ -564,5 +564,25 @@ namespace ConsoleApp
 
             Console.WriteLine($"Twoja liczba to {floatValue}");
         }
+
+        public void DoWhile()
+        {
+
+            bool success;
+            float floatValue;
+
+            //do-while - sprawdza warunek PO wykonaniu ciała - zapewnia, że zostanie ono wykonane co najmniej raz
+            //pozwala to wyeliminować inicjalizację zminnych przed wejściem do pętli
+            do
+            {
+                Console.WriteLine("Podaj liczbę:");
+                string stringValue = Console.ReadLine();
+
+                success = float.TryParse(stringValue, out floatValue);
+            } while (!success);  //w przypadku do-while na końcu występuje średnik ;
+
+
+            Console.WriteLine($"Twoja liczba to {floatValue}");
+        }
     }
 }
