@@ -8,43 +8,59 @@ using System.Linq;
 //demo.Numbers();
 //demo.ShowTime(11940);
 //demo.Arrays();
-
-//tworzymy nową listę. Lista po inicjalizacji jest pusta.
-List<string> strings = new List<string>();
-
-Console.WriteLine(strings.Count);
+//demo.Lists();
 
 
-//dodajemy nowy element do listy, rozmiar tablicy się zwiększa
-strings.Add("!");
-strings.Add("ala");
-strings.Add("kota");
 
-Console.WriteLine(strings.Count);
+Console.WriteLine("Podaj bok kwadratu:");
+string input = Console.ReadLine();
 
-//wstawiamy element na konkretny indeks listy - pozostałe ementy przesuwają się
-strings.Insert(2, "ma");
+//blok try-catch służy do obsługi wyjątków
+try //w try wpisujemy kod, w którym może wystąpić błąd (wyjątek)
+{
+    int side = int.Parse(input);
+    Console.WriteLine($"Pole: {side*side}; Obwód: {4*side}");
+}
+catch //w catch wpisujemy co ma się stać jeśli wystąpi wyjątek. catch bez "parametru" przechwytuje dowolnego rodzaju wyjątki
+{
+    Console.WriteLine("Coś poszło nie tak...");
+}
 
-Console.WriteLine(strings.Count);
+Console.WriteLine("Podaj promień koła:");
+input = Console.ReadLine();
+try
+{
+    int r = int.Parse(input);
+    Console.WriteLine($"Pole: {Math.PI * r * r}; Obwód: {2 * Math.PI * r}");
+}
+catch(Exception e) //jeśli chcemy znać powód błędu, możemy zajrzeć do obiektu wyjątku deklarując typ i nazwę zmiennej wyjątku jako "parametr" catch
+{
+    Console.WriteLine(e.Message);
+}
 
-strings.Add("!");
-strings.Add("!");
-Console.WriteLine(strings.Count);
+Console.WriteLine("Podaj wartość parzystą:");
+input = Console.ReadLine();
+try
+{
+    int value = int.Parse(input);
 
-//usuwamy element pod ostatnim indeksem - rozmiar listy się zmniejsza
-strings.RemoveAt(strings.Count - 1);
+    if (value % 2 != 0) //jeśli reszta z dzielenia przez 2 jest różna od 0 (czyli value nie jest podzielne przez 2)
+    {  
+        throw new ArgumentException("Wartość nie jest przysta");
+    }
+    //throw new Exception();
 
-//usuwamy element wg wartości - jeśli występuję więcej takich elementów, to usuwany jest pierwszy w kolejności
-strings.Remove("!");
-
-Console.WriteLine(strings.Count);
-
-//w listach odwołujemy się do elementów po indeksach (tak jak w tablicach)
-strings[strings.Count - 1] = "?";
-
-Console.WriteLine(strings[1]);
-
-//przekształcenie tablicy do listy
-strings = Console.ReadLine().Split().ToList();
-
-Console.WriteLine($"Lista ma rozmiar: {strings.Count}");
+    Console.WriteLine($"Super!");
+}
+catch (ArgumentException e) //możemy definiować różne zachowania w zależności os typu wyjątku
+{
+    Console.WriteLine(e.Message);
+}
+catch (FormatException) 
+{
+    Console.WriteLine("Nie można przekonwertować podanej wartości na int");
+}
+catch(Exception e) //definiujemy je od szczegółowego do ogólnego
+{
+    Console.WriteLine($"Coś poszło nie tak: {e.Message}");
+}
