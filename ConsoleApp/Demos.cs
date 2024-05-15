@@ -642,5 +642,121 @@ namespace ConsoleApp
             }
 
         }
+
+        public void Foreach()
+        {
+            string input = Console.ReadLine();
+            string[] splittedString = input.Split();
+
+            //foreach zastępuje poniższy sposób iteracji po tablicy przy założeniu, że iterujemy od początku do końca tablicy
+            for (int i = 0; i < splittedString.Length; i++)
+            {
+                string word = splittedString[i];
+
+                Console.WriteLine(word);
+            }
+
+            //foreach - pozwala przejsc po wszystkich elementach tablicy
+            foreach (string word in splittedString)
+            {
+                Console.WriteLine(word);
+            }
+
+
+            input = Console.ReadLine();
+            splittedString = input.Split();
+
+            int[] intValues = new int[splittedString.Length];
+            for (int i = 0; i < splittedString.Length; i++)
+            {
+                intValues[i] = int.Parse(splittedString[i]);
+            }
+
+            int counter = 0;
+            foreach (int value in intValues)
+            {
+                if (value % 2 == 0)
+                    counter++;
+            }
+            Console.WriteLine($"Wprowadziłeś {counter} liczb parzystych");
+
+
+            List<int> intList = new List<int>();
+            foreach (string s in splittedString)
+            {
+                intList.Add(int.Parse(s));
+            }
+
+            foreach (int value in intList)
+            {
+                if (value % 2 == 0)
+                    continue; //przerywa aktualne wykonywanie ciałą i przechodzi do kolejnej iteracji
+
+                if (value == 23)
+                {
+                    Console.WriteLine("Znalazłem wartość 23!");
+                    break; //przerywa wykonywanie pętli
+                }
+            }
+        }
+
+
+        public void AverageTryCatch()
+        {
+            try
+            {
+                Console.WriteLine("Wpisz liczby");
+                string input = Console.ReadLine();
+                string[] splittedString = input.Split();
+
+                int sum = 0;
+
+                foreach (string singleString in splittedString)
+                {
+                    sum += int.Parse(singleString);
+                }
+
+                Console.WriteLine("Średnia to " + sum / splittedString.Length);
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e.Message);
+
+                AverageTryCatch();
+            }
+        }
+
+        public void AverageTry()
+        {
+            bool exit = true;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Wpisz liczby");
+                string input = Console.ReadLine();
+                string[] splittedString = input.Split();
+
+                int sum = 0;
+
+                foreach (string singleString in splittedString)
+                {
+                    int value;
+                    if (exit = int.TryParse(singleString, out value))
+                    {
+                        sum += value;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Błędna wartość {singleString}");
+                        break;
+                    }
+                }
+
+                if(exit)
+                    Console.WriteLine("Średnia to " + sum / splittedString.Length);
+
+                Console.ReadLine();
+            } while (!exit);
+        }
     }
 }
