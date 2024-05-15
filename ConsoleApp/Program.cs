@@ -21,4 +21,10 @@ Demos demo = new Demos();
 //demo.AverageTry();
 
 
-Person person;
+Person person = new Person();
+
+person.SetName("Ewa");
+person.Age = 50;
+person.LastName = "Ewowska";
+Console.WriteLine( person.GetName() );
+Console.WriteLine(person.Age);
