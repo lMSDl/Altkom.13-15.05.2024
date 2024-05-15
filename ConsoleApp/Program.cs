@@ -28,3 +28,5 @@ person.Age = 50;
 person.LastName = "Ewowska";
 Console.WriteLine( person.GetName() );
 Console.WriteLine(person.Age);
+
+Console.WriteLine( person.GenerateBio());

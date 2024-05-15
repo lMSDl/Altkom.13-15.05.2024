@@ -60,5 +60,13 @@ namespace ConsoleApp.Models
                 _lastName = value/*.ToLower()*/;
             }
         }
+
+
+        //<modyfikator dostępu> <typ zwracany> <nazwa metody>()
+        public string GenerateBio()
+        {
+            string bio = $"{_name} {LastName}, wiek {Age} lat";
+            return bio;
+        }
     }
 }
