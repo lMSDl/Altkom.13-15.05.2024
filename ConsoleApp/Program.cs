@@ -21,12 +21,12 @@ Demos demo = new Demos();
 //demo.AverageTry();
 
 
-Person person = new Person();
+Person p;
+p = new Person("Ewa");
 
-person.SetName("Ewa");
-person.Age = 50;
-person.LastName = "Ewowska";
-Console.WriteLine( person.GetName() );
-Console.WriteLine(person.Age);
+//p.SetName("Ewa");
+p.LastName = "Ewowska";
+Console.WriteLine( p.GetName() );
+Console.WriteLine(p.Age);
 
-Console.WriteLine( person.GenerateBio());
+Console.WriteLine( p.GenerateBio());

@@ -12,6 +12,29 @@ namespace ConsoleApp.Models
     //class - szablon opisujący zachowania i cechy (stan) obiektów (instancji klas), które są wytwarzane na jej podstawie
     public class Person
     {
+        //metoda konstrukcyjna  (konstruktor) - bezparametrowy
+        //brak określenia typu zwracanego i nazwa taka sama jak nazwa klasy
+        //metody konstrukcyjne są potrzebne, aby wstępnie skonfigurować obiekt
+        //jeśli klasa NIE MA ŻADNEGO zdefiniowanego konstruktora, to konstruktor bezparametrowy jest generowany automatycznie
+         public Person()
+         {
+             _name = "Brak";
+         }
+
+        //konstruktor parametrowy - służy do zapewnienia klasie wartości początkowych przekazanych jako parametry
+        //jeśli w klasie występuje jakiś konstuktor parametrowy, to konstuktor bezparametrowy nie zostanie automatycznie wygenerowany
+        //chcąc posiadać jednocześnie konstruktor parametrowy i bezparametrowy musimy go jawnie utworzyć
+        public Person(string name)
+        {
+            _name = name;
+        }
+
+        public Person(string name, string lastName) : this(name) //konstruktor teleskopowy - rozszeża możliwości innego konstruktora, przekazują do niego część parametrów przez "this"
+        {
+            LastName = lastName;
+        }
+
+
 
         //pole klasy (field)
         //private - oznacza dostęp tylko dla elementów danej klasy
@@ -31,7 +54,7 @@ namespace ConsoleApp.Models
 
         //setter - do ustawiania wartości imienia - metoda przyjmuje parametr, który zostaje wpisany w odpowiednie pole (można dodać kod "obróbki danych")
         //void - metoda nic nie zwaraca
-        internal void SetName(string name)
+        private void SetName(string name)
         {
             _name = name/*.ToUpper()*/;
         }
