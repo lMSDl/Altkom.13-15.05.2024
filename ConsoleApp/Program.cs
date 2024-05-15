@@ -1,4 +1,5 @@
 ﻿using ConsoleApp;
+using ConsoleApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -17,6 +18,7 @@ Demos demo = new Demos();
 //demo.DoWhile();
 //demo.For();
 //demo.Foreach();
+//demo.AverageTry();
 
-demo.AverageTry();
 
+Person person;
